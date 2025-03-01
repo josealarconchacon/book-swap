@@ -1,0 +1,87 @@
+<nav
+  class="sidebar d-flex flex-column"
+  [class.show]="isSidebarOpen"
+  [class.collapsed]="isCollapsed && !isSidebarOpen"
+>
+  <div
+    class="sidebar-header d-flex align-items-center justify-content-between p-3 border-bottom"
+  >
+    <div class="logo">
+      <span class="logo-text fw-bold text-primary">📚</span>
+    </div>
+    <button
+      class="btn btn-outline-secondary d-none d-md-block"
+      (click)="toggleCollapse()"
+    >
+      <i
+        class="fas"
+        [ngClass]="isCollapsed ? 'fa-chevron-right' : 'fa-chevron-left'"
+      ></i>
+    </button>
+  </div>
+
+  <!-- Sidebar Menu -->
+  <div class="sidebar-menu flex-grow-1 p-3">
+    <div class="menu-category mb-3">
+      <span class="fw-bold text-uppercase small" *ngIf="!isCollapsed"
+        >Main</span
+      >
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a
+            class="nav-link d-flex align-items-center text-dark"
+            routerLink="/library"
+          >
+            <i class="fas fa-book me-2"></i>
+            <span *ngIf="!isCollapsed">Library</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link d-flex align-items-center text-dark"
+            routerLink="/shelf"
+          >
+            <i class="fas fa-book-reader me-2"></i>
+            <span *ngIf="!isCollapsed">My Shelf</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link d-flex align-items-center text-dark"
+            routerLink="/rent"
+          >
+            <i class="fas fa-handshake me-2"></i>
+            <span *ngIf="!isCollapsed">Borrowed</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link d-flex align-items-center text-dark"
+            routerLink="/saved"
+          >
+            <i class="fas fa-bookmark me-2"></i>
+            <span *ngIf="!isCollapsed">Saved</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Sidebar Footer -->
+  <div class="sidebar-footer p-3 border-top">
+    <button
+      class="btn btn-danger w-100 d-flex align-items-center"
+      (click)="logout()"
+    >
+      <i class="fas fa-sign-out-alt me-2"></i>
+      <span *ngIf="!isCollapsed">Log out</span>
+    </button>
+  </div>
+</nav>
+
+<!-- Sidebar Overlay for Mobile -->
+<div
+  class="sidebar-overlay"
+  [class.show]="isSidebarOpen"
+  (click)="closeSidebar()"
+></div>

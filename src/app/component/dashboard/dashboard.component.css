@@ -1,0 +1,65 @@
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.main-content {
+  flex-grow: 1;
+  transition: margin-left 0.3s ease-in-out;
+  min-height: 100vh;
+  overflow-x: hidden;
+  margin-left: 260px;
+  background-color: #f8f9fa;
+}
+.main-content.collapsed {
+  margin-left: 70px;
+}
+
+.content-wrapper {
+  padding-top: 1rem;
+}
+
+.recommendations-section,
+.progress-section {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  margin-bottom: 2rem;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #343a40;
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.reading-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.reading-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.reading-cover {
+  width: 80px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .main-content {
+    margin-left: 0;
+  }
+}

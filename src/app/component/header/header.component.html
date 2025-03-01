@@ -1,0 +1,82 @@
+<header
+  class="app-header py-2 px-3"
+  [ngClass]="{
+    'bg-light text-dark': !isDarkMode,
+    'bg-dark text-light': isDarkMode
+  }"
+>
+  <div
+    class="container-fluid d-flex align-items-center justify-content-between"
+  >
+    <button class="btn btn-outline-primary d-md-none" (click)="toggleSidebar()">
+      <i class="bi bi-list"></i>
+    </button>
+
+    <div class="logo fw-bold fs-4">
+      <span>📚 BookHub</span>
+    </div>
+
+    <div
+      class="search-container"
+      [ngClass]="{
+        'd-block': isSearchActive || isDesktop,
+        'd-none': !isSearchActive && !isDesktop
+      }"
+    >
+      <div class="input-group search-bar">
+        <input
+          type="text"
+          class="form-control search-input"
+          placeholder="Search books, authors..."
+        />
+        <button class="btn btn-primary">
+          <i class="bi bi-search"></i>
+        </button>
+        <button
+          class="btn btn-outline-danger d-md-none close-btn"
+          (click)="toggleSearch()"
+        >
+          <i class="bi bi-x"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="header-actions d-flex align-items-center gap-2">
+      <button
+        class="btn btn-outline-primary d-md-none"
+        (click)="toggleSearch()"
+      >
+        <i class="bi bi-search"></i>
+      </button>
+
+      <button class="btn" (click)="toggleTheme()">
+        <i
+          class="bi"
+          [ngClass]="isDarkMode ? 'bi-sun text-warning' : 'bi-moon text-dark'"
+        ></i>
+      </button>
+
+      <div class="user-menu position-relative">
+        <button
+          class="btn btn-outline-secondary d-flex align-items-center"
+          (click)="toggleUserMenu()"
+        >
+          <img src="assets/profile.jpg" alt="User" class="user-avatar me-2" />
+          <span>Adam</span>
+          <i class="bi bi-person ms-2"></i>
+        </button>
+        <div class="user-dropdown dropdown-menu shadow" *ngIf="isUserMenuOpen">
+          <a class="dropdown-item" href="#"
+            ><i class="bi bi-person"></i> Profile</a
+          >
+          <a class="dropdown-item" href="#"
+            ><i class="bi bi-gear"></i> Settings</a
+          >
+          <a class="dropdown-item" href="#"
+            ><i class="bi bi-box-arrow-right"></i> Logout</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,125 @@
+.app-header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease-in-out;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.user-menu .user-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 200px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 8px 0;
+  margin-top: 8px;
+  z-index: 10;
+}
+
+/* Search Bar */
+.search-container {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  padding: 10px;
+  border-bottom: 2px solid #007bff;
+  z-index: 1050;
+}
+
+/* Ensure search bar is always visible on larger screens */
+@media (min-width: 768px) {
+  .search-container {
+    position: static;
+    display: block !important;
+    width: auto;
+    background: transparent;
+    border-bottom: none;
+  }
+}
+
+/* Hide mobile search bar initially */
+@media (max-width: 767.98px) {
+  .search-container {
+    display: none;
+  }
+}
+
+/* Dark Theme */
+.dark-theme {
+  background-color: #121212 !important;
+  color: #e0e0e0 !important;
+}
+
+.dark-theme .user-dropdown {
+  background: #1e1e1e !important;
+  color: white !important;
+}
+
+.dark-theme .search-container {
+  background: #1e1e1e !important;
+}
+
+.dark-theme .tab-btn {
+  color: #adb5bd;
+}
+
+.dark-theme .tab-btn.active {
+  background: rgba(0, 123, 255, 0.2);
+}
+
+.search-bar {
+  width: 800px;
+  margin: auto;
+  border-radius: 50px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-input {
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.search-input:focus {
+  box-shadow: none;
+  outline: none;
+}
+
+.btn {
+  padding: 10px 15px;
+  font-size: 18px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.close-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .search-bar {
+    width: 100%;
+  }
+
+  .close-btn {
+    display: block;
+  }
+}

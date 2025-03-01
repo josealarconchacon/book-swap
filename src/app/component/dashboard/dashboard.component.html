@@ -1,0 +1,78 @@
+<div class="dashboard-container">
+  <app-sidebar (sidebarToggle)="onSidebarToggle($event)"></app-sidebar>
+
+  <main class="main-content p-0" [class.collapsed]="isSidebarCollapsed">
+    <app-header></app-header>
+
+    <div class="content-wrapper p-4">
+      <section class="progress-section mb-4">
+        <h2 class="section-title">📖 Continue Borrowed</h2>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4" *ngFor="let book of currentlyReading">
+            <div class="reading-card p-3 rounded shadow-sm">
+              <div class="d-flex gap-3">
+                <img
+                  [src]="book.image"
+                  alt="Book Cover"
+                  class="reading-cover"
+                />
+                <div class="flex-grow-1">
+                  <h5 class="mb-1">{{ book.title }}</h5>
+                  <p class="text-muted mb-2">{{ book.author }}</p>
+                  <div class="progress mb-2" style="height: 6px">
+                    <div
+                      class="progress-bar bg-primary"
+                      role="progressbar"
+                      [style.width]="book.progress + '%'"
+                      [attr.aria-valuenow]="book.progress"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                    ></div>
+                  </div>
+                  <div class="d-flex justify-content-between">
+                    <small class="text-muted"
+                      >{{ book.progress }}% completed</small
+                    >
+                    <button class="btn btn-sm btn-primary">Continue</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="recommendations-section mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h2 class="section-title">📚 Recommended Books</h2>
+          <div class="d-flex gap-2">
+            <button class="btn btn-outline-primary btn-sm">View All</button>
+            <div class="dropdown">
+              <button
+                class="btn btn-light btn-sm dropdown-toggle"
+                type="button"
+                id="sortDropdown"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="fas fa-sort me-1"></i> Sort
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="sortDropdown">
+                <li><a class="dropdown-item" href="#">Most Popular</a></li>
+                <li><a class="dropdown-item" href="#">Newest</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="row g-4">
+          <div
+            class="col-sm-6 col-md-6 col-lg-4 col-xl-3"
+            *ngFor="let book of recommendations"
+          >
+            <app-book-card [book]="book"></app-book-card>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
