@@ -3,6 +3,17 @@
 
   <main class="main-content p-0" [class.collapsed]="isSidebarCollapsed">
     <app-header></app-header>
+    <div class="d-flex justify-content-end pe-4 mt-3">
+      <button
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#addBookModal"
+      >
+        <i class="fas fa-plus me-1"></i> Add Book
+      </button>
+    </div>
+
+    <app-add-book (bookAdded)="addNewBook($event)"></app-add-book>
 
     <div class="content-wrapper p-4">
       <section class="progress-section mb-4">
