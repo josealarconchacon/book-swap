@@ -7,9 +7,9 @@ const axiosInstance = axios.create({
 });
 
 async function fetchMetadata(url) {
-  if (!url) throw new Error("Missing URL parameter");
+  if (!url) throw new Error("Error: Missing URL parameter");
 
-  console.log(`🔍 Fetching metadata for URL: ${url}`);
+  console.log(`Fetching metadata for URL: ${url}`);
   let metadata = null;
 
   // Try jsonlink.io (Open Graph Metadata)
@@ -21,7 +21,7 @@ async function fetchMetadata(url) {
   // Try Google Books API if all else fails
   if (!metadata) metadata = await fetchFromGoogleBooks(url);
 
-  if (!metadata) throw new Error("No book data found from any source.");
+  if (!metadata) throw new Error("Error: No book data found from any source.");
 
   // Validate book data
   const { error } = bookSchema.validate(metadata);
@@ -44,7 +44,7 @@ async function fetchFromJsonlink(url) {
       };
     }
   } catch (error) {
-    console.warn("⚠️ jsonlink.io failed:", error.message);
+    console.warn("Error: jsonlink.io failed:", error.message);
   }
   return null;
 }
@@ -65,7 +65,7 @@ async function fetchFromMicrolink(url) {
       };
     }
   } catch (error) {
-    console.warn("⚠️ Microlink.io failed:", error.message);
+    console.warn("Error: Microlink.io failed:", error.message);
   }
   return null;
 }
@@ -75,7 +75,7 @@ async function fetchFromGoogleBooks(url) {
   if (!extractedTitle) return null;
 
   try {
-    console.log(`🔍 Extracted Title: ${extractedTitle}`);
+    console.log(`Extracted Title: ${extractedTitle}`);
     const response = await axiosInstance.get(
       `https://www.googleapis.com/books/v1/volumes?q=intitle:${encodeURIComponent(
         extractedTitle
@@ -91,7 +91,7 @@ async function fetchFromGoogleBooks(url) {
       };
     }
   } catch (error) {
-    console.warn("⚠️ Google Books API failed:", error.message);
+    console.warn("Error: Google Books API failed:", error.message);
   }
   return null;
 }

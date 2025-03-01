@@ -5,7 +5,7 @@ function extractTitleFromUrl(url) {
       return decodeURIComponent(match[1]).replace(/[-_]/g, " ");
     }
   } catch (error) {
-    console.error("⚠️ Title extraction failed:", error.message);
+    console.error("Error: Title extraction failed:", error.message);
   }
   return null;
 }
