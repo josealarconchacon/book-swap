@@ -1,0 +1,107 @@
+<div
+  class="modal fade"
+  id="addBookModal"
+  tabindex="-1"
+  aria-labelledby="addBookModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addBookModalLabel">Add New Book</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="addBook()">
+          <!-- Book URL Input -->
+          <div class="mb-3">
+            <label class="form-label">Book URL</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="bookUrl"
+              name="bookUrl"
+              placeholder="Paste book URL"
+              (blur)="fetchBookDetails()"
+              required
+            />
+          </div>
+
+          <!-- Loading Indicator -->
+          <div *ngIf="isLoading" class="text-center my-2">
+            <span class="spinner-border spinner-border-sm"></span> Fetching book
+            details...
+          </div>
+
+          <!-- Error Message -->
+          <div *ngIf="errorMessage" class="alert alert-danger mt-2">
+            {{ errorMessage }}
+          </div>
+
+          <!-- Autopopulated Fields -->
+          <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="newBook.title"
+              name="title"
+              readonly
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Author</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="newBook.author"
+              name="author"
+              readonly
+            />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Book Cover</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="newBook.image"
+              name="image"
+              readonly
+            />
+            <div class="mt-2">
+              <img
+                *ngIf="newBook.image"
+                [src]="newBook.image"
+                class="img-thumbnail"
+                width="120"
+                height="180"
+              />
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="isLoading || !newBook.title"
+            >
+              Add Book
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
